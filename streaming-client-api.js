@@ -32,14 +32,15 @@ connectButton.onclick = async () => {
     headers: {'Authorization': `Basic ${DID_API.key}`, 'Content-Type': 'application/json'},
     body: JSON.stringify({
       source_url: "https://d-id-public-bucket.s3.amazonaws.com/or-roman.jpg"
+      // source_url: "https://image.yesky.com/uploadImages/2021/259/15/48A0D7R43TXH.jpg"
     }),
   });
 
-  
+
   const { id: newStreamId, offer, ice_servers: iceServers, session_id: newSessionId } = await sessionResponse.json()
   streamId = newStreamId;
   sessionId = newSessionId;
-  
+
   try {
     sessionClientAnswer = await createPeerConnection(offer, iceServers);
   } catch (e) {
@@ -100,13 +101,13 @@ function onIceCandidate(event) {
   console.log('onIceCandidate', event);
   if (event.candidate) {
     const { candidate, sdpMid, sdpMLineIndex } = event.candidate;
-    
+
     fetch(`${DID_API.url}/talks/streams/${streamId}/ice`,
       {
         method: 'POST',
         headers: {Authorization: `Basic ${DID_API.key}`, 'Content-Type': 'application/json'},
         body: JSON.stringify({ candidate, sdpMid, sdpMLineIndex, session_id: sessionId})
-      }); 
+      });
   }
 }
 function onIceConnectionStateChange() {
