@@ -1,8 +1,10 @@
 'use strict';
 
 // auth
-import DID_API from './api.json' assert {type: 'json'};
-if (DID_API.key == '🤫') alert('Please put your api key inside ./api.json and restart..')
+const DID_API = {
+    "key": "",
+    "url": "https://api.d-id.com"
+}
 
 const RTCPeerConnection = (window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection)
     .bind(window);
@@ -128,7 +130,7 @@ talkButton.onclick = async () => {
                         'type': 'audio',
                         // 'audio_url': 'https://d-id-public-bucket.s3.us-west-2.amazonaws.com/webrtc.mp3',
                         // 'audio_url': 'https://aioverflow.s3.ap-southeast-1.amazonaws.com/dali-demo.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230527T112424Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIAWPJJ4H3J2HJNBAWC%2F20230527%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=80c5611a9ecfe0d1da154ce63fe1fed204640674c44c3d69340d941b3c908d95',
-                        'audio_url':  audio_url,
+                        'audio_url': audio_url,
                     },
                     'driver_url': 'bank://lively/',
                     'config': {
