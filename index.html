@@ -148,6 +148,14 @@
 <!-- adde "id=content" -->
 <div id="content">
 
+    <div>
+        <label for="name">你好!</label>
+        <input type="text" id="name" name="name" value="欣雨">
+
+        <label for="city">旅行目的地:</label>
+        <input type="city" id="city" name="city" value="大理"><br><br>
+    </div>
+
     <!-- added "id=video-wrapper" -->
     <div id="video-wrapper">
         <div>
@@ -158,25 +166,26 @@
 
     <!-- added div#buttons -->
     <div id="buttons">
-        <button id="connect-button" type="button">Hi! Ava~</button>
-        <button id="talk-button" type="button">开始体验</button>
-        <button id="destroy-button" type="button">Destroy</button>
+        <button id="connect-button" type="button">进入AI世界🤖️</button>
+        <button id="talk-button" type="button">Hi! Ava~👧</button>
+        <button id="destroy-button" type="button">再聊点别的💃</button>
     </div>
 
     <!-- added div#status -->
     <div id="status">
         <!-- removed the wrapping <div> tags -->
-        ICE gathering status: <label id="ice-gathering-status-label"></label><br>
-        ICE status: <label id="ice-status-label"></label><br>
-        Peer connection status: <label id="peer-status-label"></label><br>
-        Signaling status: <label id="signaling-status-label"></label><br>
+        流连接状态: <label id="ice-gathering-status-label"></label><br>
+        流状态: <label id="ice-status-label"></label><br>
+        Ava正在赶来: <label id="peer-status-label"></label><br>
+        Ava状态: <label id="signaling-status-label"></label><br>
     </div>
 
     <form id="upload-form">
         <input type="file" name="images" multiple>
-        <button type="submit">快来分享吧～</button>
+        <button type="submit">生成旅行回忆..</button>
     </form>
     <div id="result"></div>
+
 </div>
 
 <script type="module" src="./index.js"></script>

@@ -1,7 +1,7 @@
 'use strict';
 
 // auth
-import DID_API from './api.json' assert { type: 'json' };
+import DID_API from './api.json' assert {type: 'json'};
 if (DID_API.key == '🤫') alert('Please put your api key inside ./api.json and restart..')
 
 const RTCPeerConnection = (window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection)
@@ -100,6 +100,25 @@ const talkButton = document.getElementById('talk-button');
 talkButton.onclick = async () => {
     // connectionState not supported in firefox
     if (peerConnection?.signalingState === 'stable' || peerConnection?.iceConnectionState === 'connected') {
+
+        var name = document.getElementById("name").value;
+        var city = document.getElementById("city").value;
+
+
+        // const welcome = await fetch(`http://localhost:8080/welcome`,
+        //     {
+        //         method: 'POST',
+        //         headers: {'Content-Type': 'application/json'},
+        //         body: JSON.stringify({
+        //             'name': name,
+        //             'trip': city
+        //         })
+        //     });
+        // console.log("welcome接口的返回结果：" + welcome.body)
+
+        // let audio_url = welcome.body
+        let audio_url = 'https://aioverflow.s3.ap-southeast-1.amazonaws.com/1685191909354_sound.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230527T125151Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIAWPJJ4H3J2HJNBAWC%2F20230527%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=adc11d8968952e41e327b08c8c98109ff0dd2e5b88328fdad9d4140edb7573c1'
+
         const talkResponse = await fetch(`${DID_API.url}/talks/streams/${streamId}`,
             {
                 method: 'POST',
@@ -107,7 +126,9 @@ talkButton.onclick = async () => {
                 body: JSON.stringify({
                     'script': {
                         'type': 'audio',
-                        'audio_url': 'https://d-id-public-bucket.s3.us-west-2.amazonaws.com/webrtc.mp3',
+                        // 'audio_url': 'https://d-id-public-bucket.s3.us-west-2.amazonaws.com/webrtc.mp3',
+                        // 'audio_url': 'https://aioverflow.s3.ap-southeast-1.amazonaws.com/dali-demo.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230527T112424Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIAWPJJ4H3J2HJNBAWC%2F20230527%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=80c5611a9ecfe0d1da154ce63fe1fed204640674c44c3d69340d941b3c908d95',
+                        'audio_url':  audio_url,
                     },
                     'driver_url': 'bank://lively/',
                     'config': {
